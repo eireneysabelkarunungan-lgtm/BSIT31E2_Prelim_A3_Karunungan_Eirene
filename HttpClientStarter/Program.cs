@@ -15,14 +15,20 @@ if (choice == "A")
 {
     response = await client.GetAsync("https://localhost:7048/weatherforecast");
 
-    Console.WriteLine("\nRetrieved forecast.\n");
+    Console.WriteLine($"\nStatus Code: {(int)response.StatusCode}");
+    Console.WriteLine($"Status: {response.StatusCode}");
+    Console.WriteLine($"Is Success: {response.IsSuccessStatusCode}");
+    Console.WriteLine("\nRetrieved forecast:\n");
 
 }
 else if (choice == "B")
 {
     response = await client.PostAsync("https://jsonplaceholder.typicode.com/posts", requestBody);
 
-    Console.WriteLine("\nReceived forecast.\n");
+    Console.WriteLine($"\nStatus Code: {(int)response.StatusCode}");
+    Console.WriteLine($"Status: {response.StatusCode}");
+    Console.WriteLine($"Is Success: {response.IsSuccessStatusCode}");
+    Console.WriteLine("\nAdded info:");
 
 
 }
@@ -30,14 +36,20 @@ else if (choice == "C")
 {
     response = await client.PutAsync("https://jsonplaceholder.typicode.com/posts/1", requestBody);
 
-    Console.WriteLine("\nUpdated forecast.\n");
+    Console.WriteLine($"\nStatus Code: {(int)response.StatusCode}");
+    Console.WriteLine($"Status: {response.StatusCode}");
+    Console.WriteLine($"Is Success: {response.IsSuccessStatusCode}");
+    Console.WriteLine("\nUpdated info:");
 
 }
 else if (choice == "D")
 {
     response = await client.DeleteAsync("https://jsonplaceholder.typicode.com/posts/1");
 
-    Console.WriteLine("\nDeleted.\n");
+    Console.WriteLine($"\nStatus Code: {(int)response.StatusCode}");
+    Console.WriteLine($"Status: {response.StatusCode}");
+    Console.WriteLine($"Is Success: {response.IsSuccessStatusCode}");
+    Console.WriteLine("\nDeleted.");
 }
 else
 {
@@ -46,13 +58,11 @@ else
 }
 
 // ✅ Show response details
-Console.WriteLine($"Status Code: {(int)response.StatusCode}");
-Console.WriteLine($"Status: {response.StatusCode}");
-Console.WriteLine($"Is Success: {response.IsSuccessStatusCode}");
+
 //Console.WriteLine($"Raw response: {response}");
 
 
 var body = await response.Content.ReadAsStringAsync();
-Console.WriteLine($"\nBody:\n{body}");
+Console.WriteLine(body);
 Console.ReadLine();
 
