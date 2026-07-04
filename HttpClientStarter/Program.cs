@@ -3,13 +3,56 @@ using var client = new HttpClient();
 
 var requestBody = new StringContent("{\r\n  \"id\": 100,\r\n  \"name\": \"Jane Doe\",\r\n  \"username\": \"janedoe\",\r\n  \"email\": \"jane@example.com\",\r\n  \"isActive\": true,\r\n  \"roles\": [\"admin\", \"editor\"],\r\n  \"address\": {\r\n    \"street\": \"123 Main St\",\r\n    \"city\": \"Metropolis\",\r\n    \"zipcode\": \"12345\"\r\n  }\r\n}");
 
-var response = await client.PostAsync("https://jsonplaceholder.typicode.com/posts/1xx", requestBody);
+var response = await client.PostAsync("https://localhost:7048/weatherforecast", requestBody);
+
+Console.WriteLine("Select Action:\n\nA - Get\nB - Post\nC - Put\nD - Delete");
+Console.Write("\nEnter choice: ");
+
+string choice = Console.ReadLine();
+
+
+if (choice == "A")
+{
+    response = await client.GetAsync("https://localhost:7048/weatherforecast");
+
+    Console.WriteLine("\nRetrieved forecast.\n");
+
+}
+else if (choice == "B")
+{
+    response = await client.PostAsync("https://localhost:7048/weatherforecast", requestBody);
+
+    Console.WriteLine("\nReceived forecast.\n");
+
+
+}
+else if (choice == "C")
+{
+    response = await client.PutAsync("https://localhost:7048/weatherforecast", requestBody);
+
+    Console.WriteLine("\nUpdated forecast.\n");
+
+}
+else if (choice == "D")
+{
+    response = await client.DeleteAsync("https://jsonplaceholder.typicode.com/posts/1");
+
+    Console.WriteLine("\nDeleted.\n");
+}
+else
+{
+    Console.WriteLine("Invalid choice.");
+    return;
+}
 
 // ✅ Show response details
 Console.WriteLine($"Status Code: {(int)response.StatusCode}");
 Console.WriteLine($"Status: {response.StatusCode}");
 Console.WriteLine($"Is Success: {response.IsSuccessStatusCode}");
-Console.WriteLine($"Raw response: {response}");
+//Console.WriteLine($"Raw response: {response}");
+
 
 var body = await response.Content.ReadAsStringAsync();
-Console.WriteLine(body);
+Console.WriteLine($"\nBody:\n{body}");
+Console.ReadLine();
+
