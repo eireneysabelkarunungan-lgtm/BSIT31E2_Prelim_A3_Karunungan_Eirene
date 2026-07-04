@@ -20,7 +20,7 @@ if (choice == "A")
 }
 else if (choice == "B")
 {
-    response = await client.PostAsync("https://localhost:7048/weatherforecast", requestBody);
+    response = await client.PostAsync("https://jsonplaceholder.typicode.com/posts", requestBody);
 
     Console.WriteLine("\nReceived forecast.\n");
 
@@ -28,7 +28,7 @@ else if (choice == "B")
 }
 else if (choice == "C")
 {
-    response = await client.PutAsync("https://localhost:7048/weatherforecast", requestBody);
+    response = await client.PutAsync("https://jsonplaceholder.typicode.com/posts/1", requestBody);
 
     Console.WriteLine("\nUpdated forecast.\n");
 

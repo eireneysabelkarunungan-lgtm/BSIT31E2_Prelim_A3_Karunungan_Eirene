@@ -32,28 +32,16 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost(Name = "PostWeatherForecast")]
-        public IEnumerable<WeatherForecast> Post()
+        public IActionResult Post([FromBody]WeatherForecast forecast)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return Ok(forecast);
         }
 
 
         [HttpPut(Name = "PutWeatherForecast")]
-        public IEnumerable<WeatherForecast> Put()
+        public IActionResult Put([FromBody] WeatherForecast forecast)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return Ok(forecast);
         }
 
         [HttpDelete(Name = "DeleteWeatherForecast")]
